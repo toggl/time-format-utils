@@ -1,5 +1,5 @@
 'use strict'
-seconds_to_ext_hhmmss = (t, type) ->
+exports.secondsToExtHhmmss = (t, type) ->
   if (type is 'improved')
     exports.secToHhmmssImproved(t)
   else if (type is 'decimal')
