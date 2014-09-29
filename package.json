@@ -1,0 +1,17 @@
+{
+  "name": "toggl-time-format",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "cc": "coffee lib/index.coffee",
+    "test": "mocha --compilers coffee-script/register test/*.coffee"
+  },
+  "author": "",
+  "devDependencies": {
+    "coffee": "0.0.1",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
+  }
+}
