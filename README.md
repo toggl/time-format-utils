@@ -88,7 +88,7 @@ Pads a value `val` to the left by `size` `ch` or `' '` characters.
 * **String** The padding result
 
 # Documentation generation
-Documentation was partially generated with `markdox` and smaller tweaks over
+Documentation was partially generated with `markdox` with smaller tweaks over
 the generated markdown file.
 
 You can reproduce it running `npm run cc && markdox lib/index.js`, which should
