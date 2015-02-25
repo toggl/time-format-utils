@@ -20,6 +20,11 @@ describe 'time-format', ->
   describe 'millisecondsToHhmmss(ms)', ->
     it 'pretty formats some amount of milliseconds to hh:mm:ss', ->
       timeFormat.millisecondsToHhmmss(1000 * 60 * 60).should.equal '01:00:00'
+      timeFormat.millisecondsToHhmmss('' + 1000 * 60 * 60)
+        .should.equal '01:00:00'
+      timeFormat.millisecondsToHhmmss(NaN).should.equal '0 sec'
+      timeFormat.millisecondsToHhmmss(1000 * 60 * 5).should.equal '05:00 min'
+      timeFormat.millisecondsToHhmmss(1000 * 5).should.equal '5 sec'
 
   describe 'secondsToHhmm(secs)', ->
     it 'pretty formats some amount of seconds to hh:mm', ->
@@ -31,6 +36,14 @@ describe 'time-format', ->
       timeFormat.secToDecimalHours(60 * 10).should.equal '0.17 h'
       timeFormat.secToDecimalHours(60 * 60 * 3).should.equal '3.00 h'
 
+  describe 'secondsToSmallHhmm(secs)', ->
+    it 'pretty formats some amount of seconds in hours (hh:mm)', ->
+      timeFormat.secondsToSmallHhmm(60 * 60 * 3).should.equal '3:00'
+
+  describe 'secondsToSmallHhmm(secs)', ->
+    it 'pretty formats some amount of seconds in hours (hh:mm)', ->
+      timeFormat.secondsToPrettyHhmm(60 * 60 * 3).should.equal '3 h 00 min'
+
   describe 'secToHhmmImproved(secs)', ->
     it 'pretty formats some amount of seconds in hours (hh.hh h)', ->
       timeFormat.secToHhmmImproved(60 * 10)
@@ -41,3 +54,11 @@ describe 'time-format', ->
 
       timeFormat.secToHhmmImproved(10)
         .should.equal "<span class='duration'>0:00:10</span>"
+
+  describe '_baseSecondsToHhmm(secs, sep, suffix)', ->
+    it 'formats a some amount of seconds in hours (hh<sep>mm) ', ->
+      timeFormat._baseSecondsToHhmm(60 * 60).should.equal '1:00'
+      timeFormat._baseSecondsToHhmm(60 * 60, '-').should.equal '1-00'
+      timeFormat._baseSecondsToHhmm(60 * 10, '.').should.equal '0.10'
+      timeFormat._baseSecondsToHhmm(60 * 10, undefined, ' time')
+        .should.equal '0:10 time'

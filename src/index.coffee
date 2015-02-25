@@ -93,7 +93,7 @@ baseSecondsToHhmm = exports._baseSecondsToHhmm =
 # Formatting helper functions:
 exports.secondsToHhmm = (secs) -> baseSecondsToHhmm(secs, ':', ' h')
 exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ':')
-exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')
+exports.secondsToPrettyHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')
 
 ##
 # Pads a value `val` to the left by `size` `ch` or `' '` characters.
