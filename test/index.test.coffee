@@ -4,6 +4,19 @@ should = require 'should'
 timeFormat = require '..'
 
 describe 'time-format', ->
+  describe 'secondsToExtHhmmss(t, type)', ->
+    it 'formats a duration as `improved`', ->
+      timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'improved') # 10h
+        .should.equal "<span class='duration'><strong>10</strong>:00:00</span>"
+
+    it 'formats a duration as `decimal`', ->
+      timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'decimal') # 10h
+        .should.equal '10.00 h'
+
+    it 'formats a duration as `classic`', ->
+      timeFormat.secondsToExtHhmmss(10 * 60 * 60 + 5 * 60, 'classic') # 10h
+        .should.equal '10:05:00'
+
   describe 'millisecondsToHhmmss(ms)', ->
     it 'pretty formats some amount of milliseconds to hh:mm:ss', ->
       timeFormat.millisecondsToHhmmss(1000 * 60 * 60).should.equal '01:00:00'

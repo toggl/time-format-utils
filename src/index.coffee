@@ -1,11 +1,11 @@
 'use strict'
 exports.secondsToExtHhmmss = (t, type) ->
   if (type is 'improved')
-    exports.secToHhmmssImproved(t)
+    exports.secToHhmmImproved(t)
   else if (type is 'decimal')
     exports.secToDecimalHours(t)
   else
-    exports.secondsToHhmmss(t)
+    exports.millisecondsToHhmmss(t * 1000)
 
 ##
 # Pretty formats some amount of milliseconds in a span `duration` tag.
