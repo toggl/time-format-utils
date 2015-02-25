@@ -1,4 +1,12 @@
 'use strict'
+###*
+ * Formats an amount of seconds in the specified "duration format"
+ *
+ * @param {Number} t Amount in seconds
+ * @param {String} type One of 'improved', 'decimal' and 'classic'
+ * @return {String}
+ *
+###
 exports.secondsToExtHhmmss = (t, type) ->
   if (type is 'improved')
     exports.secToHhmmImproved(t)
@@ -7,13 +15,12 @@ exports.secondsToExtHhmmss = (t, type) ->
   else
     exports.millisecondsToHhmmss(t * 1000)
 
-##
-# Pretty formats some amount of milliseconds in a span `duration` tag.
-#
-# @param {Number} seconds
-# @return {String}
-##
-
+###*
+ * Pretty formats some amount of milliseconds in a span `duration` tag.
+ *
+ * @param {Number} seconds
+ * @return {String}
+###
 exports.secToHhmmImproved = (seconds) ->
   if not seconds? then return ''
 
@@ -33,13 +40,12 @@ exports.secToHhmmImproved = (seconds) ->
 
   "<span class='duration'>#{formatted}</span>"
 
-##
-# Pretty formats some amount of milliseconds in "hh:mm:ss".
-#
-# @param {Number} ms
-# @return {String}
-##
-
+###*
+ * Pretty formats some amount of milliseconds in "hh:mm:ss".
+ *
+ * @param {Number} ms
+ * @return {String}
+###
 exports.millisecondsToHhmmss = (ms) ->
   if not (typeof ms is 'number')
     ms = parseInt(ms, 10)
@@ -65,47 +71,44 @@ exports.millisecondsToHhmmss = (ms) ->
 
   hours + ':' + minutes + ':' + seconds
 
-##
-# Formats some amount of seconds in hours with two decimal cases ("hh.hh h").
-#
-# @param {Number} secs
-# @return {String}
-##
-
+###*
+ * Formats some amount of seconds in hours with two decimal cases ("hh.hh h").
+ *
+ * @param {Number} secs
+ * @return {String}
+###
 exports.secToDecimalHours = (secs) -> (secs / 60 / 60).toFixed(2) + " h"
 
-##
-# Formats some amount of seconds in "hh:mm" with a variable separator `sep` and
-# suffix `suffix`.
-#
-# @param {Number} secs The amount of seconds to format
-# @param {String} sep A separator
-# @param {String} suffix A suffix
-# @return {String}
-##
-
+###*
+ * Formats some amount of seconds in "hh:mm" with a variable separator `sep` and
+ * suffix `suffix`.
+ *
+ * @param {Number} secs The amount of seconds to format
+ * @param {String} sep A separator
+ * @param {String} suffix A suffix
+ * @return {String}
+###
 baseSecondsToHhmm = exports._baseSecondsToHhmm =
 (secs, sep = ':', suffix = '') ->
   hours = '' + Math.floor(secs / 3600)
   minutes = leftPad('' + Math.floor(secs % 3600 / 60), 2, '0')
   hours + sep + minutes + suffix
 
-# Formatting helper functions:
-exports.secondsToHhmm = (secs) -> baseSecondsToHhmm(secs, ':', ' h')
-exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ':')
-exports.secondsToPrettyHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')
-
-##
-# Pads a value `val` to the left by `size` `ch` or `' '` characters.
-#
-# @param {Mixed} val The value to pad
-# @param {Number} size The padding's size
-# @param {String} [ch=' '] The padding character
-# @return {String} The padding result
-##
-
+###*
+ * Pads a value `val` to the left by `size` `ch` or `' '` characters.
+ *
+ * @param {Mixed} val The value to pad
+ * @param {Number} size The padding's size
+ * @param {String} [ch=' '] The padding character
+ * @return {String} The padding result
+###
 leftPad = exports._leftPad = (val, size, ch = ' ') ->
   result = '' + val
   while result.length < size
     result = ch + result
   result
+
+# Formatting helper functions:
+exports.secondsToHhmm = (secs) -> baseSecondsToHhmm(secs, ':', ' h')
+exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ':')
+exports.secondsToPrettyHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')

@@ -2,7 +2,7 @@
   "name": "time-formatter",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple utilities for fast duration formatting",
   "main": "lib/index.js",
   "scripts": {
     "postinstall": "npm run cc",
