@@ -62,3 +62,30 @@ describe 'time-format', ->
       timeFormat._baseSecondsToHhmm(60 * 10, '.').should.equal '0.10'
       timeFormat._baseSecondsToHhmm(60 * 10, undefined, ' time')
         .should.equal '0:10 time'
+
+  describe '_toSnakeCase(str)', ->
+    it 'converts strings from camel case to snake case', ->
+      timeFormat._toSnakeCase('somethingHere').should.equal 'something_here'
+      timeFormat._toSnakeCase('somethingVeryInteresting')
+        .should.equal 'something_very_interesting'
+      timeFormat._toSnakeCase('SomethingWeird')
+        .should.equal 'Something_weird'
+      timeFormat._toSnakeCase('somethingH')
+        .should.equal 'something_h'
+
+  describe 'compatibility layer', ->
+    it 'exposes functions with snake case', ->
+      fns = "secondsToExtHhmmss secToHhmmImproved millisecondsToHhmmss
+             secToDecimalHours secondsToHhmm secondsToSmallHhmm
+             secondsToPrettyHhmm".split(' ')
+      compatFns = "seconds_to_ext_hhmmss sec_to_hhmm_improved
+                   milliseconds_to_hhmmss sec_to_decimal_hours
+                   seconds_to_hhmm seconds_to_small_hhmm
+                   seconds_to_pretty_hhmm".split(' ')
+      for [fn, compatFn] in zip(fns, compatFns)
+        timeFormat.should.have.properties(fn, compatFn)
+        timeFormat[fn].should.equal timeFormat[compatFn]
+
+zip = (col1, col2) ->
+  for i, e of col1
+    [e, col2[i]]

@@ -112,3 +112,17 @@ leftPad = exports._leftPad = (val, size, ch = ' ') ->
 exports.secondsToHhmm = (secs) -> baseSecondsToHhmm(secs, ':', ' h')
 exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ':')
 exports.secondsToPrettyHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')
+
+###*
+ * Converts a string to snake case
+ *
+ * @param {String} str
+ * @return {String}
+###
+toSnakeCase = exports._toSnakeCase = (str) ->
+  str.replace(/.([A-Z])/g, (m) -> m[0] + '_' + m[1].toLowerCase())
+
+# Compatibility layer
+for name, fn of exports
+  continue if name.charAt(0) == '_'
+  exports[toSnakeCase(name)] = fn

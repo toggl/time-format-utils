@@ -2,92 +2,109 @@ time-formatter
 ==============
 Simple utilities for fast duration formatting.
 
-# External API
-## secondsToExtHhmmss(t, type)
+## Compatibility layer
+All functions in the external API (all functions which aren't prefixed with
+'_') are also exported with snake case names, in order to be compatible with
+older versions of this module.
+
+## External API
+### secondsToExtHhmmss(t, type)
 
 Formats an amount of seconds in the specified "duration format"
 
-### Params:
+#### Params:
 
 * **Number** *t* Amount in seconds
 * **String** *type* One of 'improved', 'decimal' and 'classic'
 
-### Return:
+#### Return:
 
 * **String**
 
-## secToHhmmImproved(seconds)
+### secToHhmmImproved(seconds)
 
 Pretty formats some amount of milliseconds in a span `duration` tag.
 
-### Params:
+#### Params:
 
 * **Number** *seconds*
 
-### Return:
+#### Return:
 
 * **String**
 
-## millisecondsToHhmmss(ms)
+### millisecondsToHhmmss(ms)
 
 Pretty formats some amount of milliseconds in "hh:mm:ss".
 
-### Params:
+#### Params:
 
 * **Number** *ms*
 
-### Return:
+#### Return:
 
 * **String**
 
-## secToDecimalHours(secs)
+### secToDecimalHours(secs)
 
 Formats some amount of seconds in hours with two decimal cases ("hh.hh h").
 
-### Params:
+#### Params:
 
 * **Number** *secs*
 
-### Return:
+#### Return:
 
 * **String**
 
-# Helper functions (aliases)
+## Helper functions (aliases)
 - `secondsToHhmm(secs)` is an alias to `baseSecondsToHhmm(secs, ':', ' h')`
 - `secondsToSmallHhmm(secs)` is an alias to `baseSecondsToHhmm(secs, ':')`
 - `secondsToPrettyHhmm(secs)` is an alias to `baseSecondsToHhmm(secs, ' h ', ' min')`
 
-# Internal API
-## _baseSecondsToHhmm(secs)
+## Internal API
+### _baseSecondsToHhmm(secs)
 
 Formats some amount of seconds in "hh:mm" with a variable separator `sep` and
 suffix `suffix`.
 
-### Params:
+#### Params:
 
 * **Number** *secs* The amount of seconds to format
 * **String** *sep* A separator
 * **String** *suffix* A suffix
 
-### Return:
+#### Return:
 
 * **String**
 
-## _leftPad(val, size, ch)
+### _leftPad(val, size, ch)
 
 Pads a value `val` to the left by `size` `ch` or `' '` characters.
 
-### Params:
+#### Params:
 
 * **Mixed** *val* The value to pad
 * **Number** *size* The padding's size
 * **String** *[ch=' ']* The padding character
 
-### Return:
+#### Return:
 
 * **String** The padding result
 
-# Documentation generation
+### _toSnakeCase(str)
+
+Converts a string to snake case
+
+#### Params:
+
+* **String** *str*
+
+#### Return:
+
+* **String**
+
+## Documentation generation
 Documentation was partially generated with `markdox` with smaller tweaks over
 the generated markdown file.
 
@@ -95,6 +112,5 @@ You can reproduce it running `npm run cc && markdox lib/index.js`, which should
 generate a mostly correct documentation, depending on how lucky we are about
 where the coffee-script compiler puts our comments.
 
-# Code coverage generation
+## Code coverage generation
 `npm run coverage` runs tests and generates an HTML code-coverage report.
-
