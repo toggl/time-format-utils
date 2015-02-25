@@ -105,7 +105,7 @@ exports.secondsToSmallHhmm = (secs) -> baseSecondsToHhmm(secs, ' h ', ' min')
 ##
 
 leftPad = exports._leftPad = (val, size, ch = ' ') ->
-  result = "" + val
+  result = '' + val
   while result.length < size
     result = ch + result
   result

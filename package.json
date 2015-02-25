@@ -7,12 +7,23 @@
   "scripts": {
     "postinstall": "npm run cc",
     "cc": "coffee -c -o lib src/*.coffee",
-    "test": "mocha --compilers coffee:coffee-script/register test/*.coffee"
+    "test": "npm run cc && mocha --compilers coffee:coffee-script/register test/*.test.coffee",
+    "coverage": "npm run cc && mocha --compilers coffee:coffee-script/register --require blanket -R html-cov test/*.test.coffee > coverage.html"
   },
   "author": "",
   "devDependencies": {
+    "blanket": "^1.1.6",
     "coffee-script": "^1.8.0",
     "mocha": "^1.21.4",
     "should": "^4.0.4"
+  },
+  "config": {
+    "blanket": {
+      "data-cover-never": [
+        "test",
+        "node_modules"
+      ],
+      "pattern": "lib"
+    }
   }
 }

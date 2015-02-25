@@ -1,7 +1,7 @@
 'use strict'
 assert = require 'assert'
 should = require 'should'
-timeFormat = require '../src'
+timeFormat = require '..'
 
 describe 'time-format', ->
   describe 'millisecondsToHhmmss(ms)', ->
