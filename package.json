@@ -1,7 +1,6 @@
 {
   "name": "time-formatter",
-  "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple utilities for fast duration formatting",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +9,7 @@
     "test": "npm run cc && mocha --compilers coffee:coffee-script/register test/*.test.coffee",
     "coverage": "npm run cc && mocha --compilers coffee:coffee-script/register --require blanket -R html-cov test/*.test.coffee > coverage.html"
   },
-  "author": "",
+  "author": "Pedro Tacla Yamada",
   "devDependencies": {
     "blanket": "^1.1.6",
     "coffee-script": "^1.8.0",
