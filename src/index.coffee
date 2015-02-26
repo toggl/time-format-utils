@@ -46,7 +46,7 @@ exports.secToHhmmImproved = (seconds) ->
  * @param {Number} ms
  * @return {String}
 ###
-exports.millisecondsToHhmmss = (ms) ->
+exports.millisecondsToHhmmss = (ms, withoutSeconds) ->
   if not (typeof ms is 'number')
     ms = parseInt(ms, 10)
 
@@ -56,6 +56,10 @@ exports.millisecondsToHhmmss = (ms) ->
   hours = Math.floor(ms / 3600000)
   minutes = Math.floor((ms % 3600000) / 60000)
   seconds = Math.floor((ms % 60000) / 1000)
+
+  if withoutSeconds
+    if !hours then return minites + ' min'
+    else return hours + 'h ' + leftPad(minutes, 2, '0') + ' min'
 
   if !hours
     if !minutes

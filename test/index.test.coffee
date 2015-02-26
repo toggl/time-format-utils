@@ -17,7 +17,7 @@ describe 'time-format', ->
       timeFormat.secondsToExtHhmmss(10 * 60 * 60 + 5 * 60, 'classic') # 10h
         .should.equal '10:05:00'
 
-  describe 'millisecondsToHhmmss(ms)', ->
+  describe 'millisecondsToHhmmss(ms, withoutSeconds)', ->
     it 'pretty formats some amount of milliseconds to hh:mm:ss', ->
       timeFormat.millisecondsToHhmmss(1000 * 60 * 60).should.equal '01:00:00'
       timeFormat.millisecondsToHhmmss('' + 1000 * 60 * 60)
@@ -25,6 +25,12 @@ describe 'time-format', ->
       timeFormat.millisecondsToHhmmss(NaN).should.equal '0 sec'
       timeFormat.millisecondsToHhmmss(1000 * 60 * 5).should.equal '05:00 min'
       timeFormat.millisecondsToHhmmss(1000 * 5).should.equal '5 sec'
+
+    describe 'if `withoutSeconds == true`', ->
+      it 'hides seconds from the output', ->
+        timeFormat.millisecondsToHhmmss(1000 * 60 * 60, true).should.equal '1h 00 min'
+        timeFormat.millisecondsToHhmmss('' + 1000 * 60 * 60 + 1000 * 40, true)
+            .should.equal '100000h 00 min'
 
   describe 'secondsToHhmm(secs)', ->
     it 'pretty formats some amount of seconds to hh:mm', ->
