@@ -1,25 +1,4 @@
 'use strict'
-decomposeMs = exports.decomposeMs = (ms) ->
-  hours: Math.floor(ms / 3600000)
-  minutes: Math.floor((ms % 3600000) / 60000)
-  seconds: Math.floor((ms % 60000) / 1000)
-
-exports.formatMs = (ms, fmt) ->
-  d = decomposeMs(ms)
-  if _.isFunction(fmt)
-    fmt(d)
-  else if _.isString(fmt)
-    compile(fmt)(d)
-
-exports.compile = (fmt) ->
-  (d) ->
-    fmt
-      .replace(/%hours/g, d.hours)
-      .replace(/%seconds/g, d.seconds)
-      .replace(/%minutes/g, d.minutes)
-
-console.log exports.compile("Hello there %hours")(decomposeMs(10000000))
-
 ###*
  * Formats an amount of seconds in the specified "duration format"
  *
