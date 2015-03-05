@@ -3,7 +3,7 @@ assert = require 'assert'
 should = require 'should'
 timeFormat = require '..'
 
-describe 'time-format', ->
+describe 'time-format-utils', ->
   describe 'secondsToExtHhmmss(t, type)', ->
     it 'formats a duration as `improved`', ->
       timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'improved') # 10h

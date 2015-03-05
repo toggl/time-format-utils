@@ -1,5 +1,5 @@
-time-formatter
-==============
+time-format-utils
+=================
 Simple utilities for fast duration formatting.
 
 ## Compatibility layer
