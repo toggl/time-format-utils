@@ -1,10 +1,10 @@
 {
   "name": "time-format-utils",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Simple utilities for fast duration formatting",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "npm run cc",
+    "prepublish": "npm run cc",
     "cc": "coffee -c -o lib src/*.coffee",
     "test": "npm run cc && mocha --compilers coffee:coffee-script/register test/*.test.coffee",
     "coverage": "npm run cc && mocha --compilers coffee:coffee-script/register --require blanket -R html-cov test/*.test.coffee > coverage.html"
