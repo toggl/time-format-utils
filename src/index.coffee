@@ -26,7 +26,7 @@ exports.secToHhmmImproved = (seconds) ->
 
   hours = Math.floor(seconds / 3600)
   minutes = Math.floor((seconds % 3600) / 60)
-  seconds = seconds % 60
+  seconds = Math.floor(seconds % 60)
 
   sminutes = leftPad(minutes, 2, '0')
   sseconds = leftPad((seconds % 60), 2, '0')

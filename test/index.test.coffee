@@ -58,6 +58,12 @@ describe 'time-format-utils', ->
       timeFormat.secToHhmmImproved(60 * 60 * 10)
         .should.equal "<span class='duration'><strong>10</strong>:00:00</span>"
 
+      timeFormat.secToHhmmImproved(60 * 60 * 10 + 1 / 3)
+        .should.equal "<span class='duration'><strong>10</strong>:00:00</span>"
+
+      timeFormat.secToHhmmImproved(60 * 60 * 10 + 1 + 1 / 3)
+        .should.equal "<span class='duration'><strong>10</strong>:00:01</span>"
+
       timeFormat.secToHhmmImproved(10)
         .should.equal "<span class='duration'>0:00:10</span>"
 
