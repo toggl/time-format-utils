@@ -1,6 +1,6 @@
 {
   "name": "time-format-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple utilities for fast duration formatting",
   "main": "lib/index.js",
   "scripts": {
