@@ -1,6 +1,7 @@
 time-format-utils
 =================
 [![npm version](https://img.shields.io/npm/v/time-format-utils.svg)](https://npmjs.org/package/time-format-utils)
+[![Build Status](https://travis-ci.org/toggl/time-format-utils.svg)](https://travis-ci.org/toggl/time-format-utils)
 - - -
 Simple utilities for fast duration formatting.
 
