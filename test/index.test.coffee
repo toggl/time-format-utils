@@ -46,7 +46,7 @@ describe 'time-format-utils', ->
     it 'pretty formats some amount of seconds in hours (hh:mm)', ->
       timeFormat.secondsToSmallHhmm(60 * 60 * 3).should.equal '3:00'
 
-  describe 'secondsToSmallHhmm(secs)', ->
+  describe 'secondsToPrettyHhmm(secs)', ->
     it 'pretty formats some amount of seconds in hours (hh:mm)', ->
       timeFormat.secondsToPrettyHhmm(60 * 60 * 3).should.equal '3 h 00 min'
 
