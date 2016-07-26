@@ -9,6 +9,10 @@ describe 'time-format-utils', ->
       timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'improved') # 10h
         .should.equal "<span class='time-format-utils__duration'><strong>10</strong>:00:00</span>"
 
+    it 'formats a duration as `improved` without html', ->
+      timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'improved', {html: false}) # 10h
+        .should.equal "10:00:00"
+
     it 'formats a duration as `decimal`', ->
       timeFormat.secondsToExtHhmmss(10 * 60 * 60, 'decimal') # 10h
         .should.equal '10.00 h'
@@ -51,7 +55,7 @@ describe 'time-format-utils', ->
       timeFormat.secondsToPrettyHhmm(60 * 60 * 3).should.equal '3 h 00 min'
 
   describe 'secToHhmmImproved(secs)', ->
-    it 'pretty formats some amount of seconds in hours (hh.hh h)', ->
+    it 'pretty formats some amount of seconds in improved format', ->
       timeFormat.secToHhmmImproved(60 * 10)
         .should.equal "<span class='time-format-utils__duration'>0:<strong>10</strong>:00</span>"
 
@@ -66,6 +70,23 @@ describe 'time-format-utils', ->
 
       timeFormat.secToHhmmImproved(10)
         .should.equal "<span class='time-format-utils__duration'>0:00:10</span>"
+
+  describe 'secToHhmmImproved(secs, {html: false})', ->
+    it 'pretty formats some amount of seconds in improved format without html', ->
+      timeFormat.secToHhmmImproved(60 * 10, {html: false})
+        .should.equal "0:10:00"
+
+      timeFormat.secToHhmmImproved(60 * 60 * 10, {html: false})
+        .should.equal "10:00:00"
+
+      timeFormat.secToHhmmImproved(60 * 60 * 10 + 1 / 3, {html: false})
+        .should.equal "10:00:00"
+
+      timeFormat.secToHhmmImproved(60 * 60 * 10 + 1 + 1 / 3, {html: false})
+        .should.equal "10:00:01"
+
+      timeFormat.secToHhmmImproved(10, {html: false})
+        .should.equal "0:00:10"
 
   describe '_baseSecondsToHhmm(secs, sep, suffix)', ->
     it 'formats a some amount of seconds in hours (hh<sep>mm) ', ->

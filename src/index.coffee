@@ -7,9 +7,9 @@
  * @return {String}
  *
 ###
-exports.secondsToExtHhmmss = (t, type) ->
+exports.secondsToExtHhmmss = (t, type, options = {html: true}) ->
   if (type is 'improved')
-    exports.secToHhmmImproved(t)
+    exports.secToHhmmImproved(t, options)
   else if (type is 'decimal')
     exports.secToDecimalHours(t)
   else
@@ -21,7 +21,7 @@ exports.secondsToExtHhmmss = (t, type) ->
  * @param {Number} seconds
  * @return {String}
 ###
-exports.secToHhmmImproved = (seconds) ->
+exports.secToHhmmImproved = (seconds, options = {html: true}) ->
   if not seconds? then return ''
 
   hours = Math.floor(seconds / 3600)
@@ -30,6 +30,9 @@ exports.secToHhmmImproved = (seconds) ->
 
   sminutes = leftPad(minutes, 2, '0')
   sseconds = leftPad((seconds % 60), 2, '0')
+
+  if not options.html
+    return "#{hours}:#{sminutes}:#{sseconds}"
 
   if hours > 0
     formatted = "<strong>#{hours}</strong>:#{sminutes}:#{sseconds}"
