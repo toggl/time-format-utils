@@ -38,7 +38,7 @@ exports.secToHhmmImproved = (seconds) ->
   else
     formatted = "#{hours}:#{sminutes}:#{sseconds}"
 
-  "<span class='duration'>#{formatted}</span>"
+  "<span class='time-format-utils__duration'>#{formatted}</span>"
 
 ###*
  * Pretty formats some amount of milliseconds in "hh:mm:ss".
